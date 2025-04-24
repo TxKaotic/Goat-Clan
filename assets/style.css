@@ -144,7 +144,7 @@ h1{
 .ranking-page{
   background-image: linear-gradient(to left, grey, greenyellow);
 }
-p{
+.noob-ranks{
   text-align: center;
   color: orange;
   font-weight: bold;

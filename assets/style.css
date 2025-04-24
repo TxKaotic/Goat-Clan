@@ -122,6 +122,11 @@ h1{
   margin-left: 20%;
   margin-right: 20%;
   padding: 10px;
+    font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-size: 14px;
+  font-weight: 200;
+  font-style: normal;
 }
 
 .rank-title-page{

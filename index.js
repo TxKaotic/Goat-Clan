@@ -31,7 +31,7 @@ window.onclick = function(event) {
   }
 }
 
-$("#myBtn").onclick(function () {
+$("#myBtn").click(function () {
     let level = $("#total-level").val();
     let achievementTier = $("#achieve").val();
     let combatTier = $("#achieve").val();
@@ -39,6 +39,6 @@ $("#myBtn").onclick(function () {
     let str = "Your Total Level is: " + level
         + " Achievement Diary Tier is: " + achievementTier 
         + " Combat Tier is: " + combatTier
-        + " You have been a member for: \n" + memberYears + "years.";
+        + " You have been a member for: " + memberYears + "years.";
     $(".modal-content").html(str);
 });

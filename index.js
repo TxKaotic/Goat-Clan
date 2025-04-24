@@ -31,7 +31,7 @@ window.onclick = function(event) {
   }
 }
 
-$("#myBtn").click(function () {
+$("#myBtn").onclick(function () {
     let level = $("#total-level").val();
     let achievementTier = $("#achieve").val();
     let combatTier = $("#achieve").val();

@@ -108,3 +108,44 @@ h1{
   filter: blur(12px);
 }
 
+.rank{
+  margin: 25px;
+  text-align: center;
+  font-family: "Kode Mono", monospace;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+}
+.reqs{
+  border: 5px solid darkgray;
+  border-radius: 0px 25px 0px 25px;
+  margin-left: 20%;
+  margin-right: 20%;
+  padding: 10px;
+}
+
+.rank-title-page{
+  height: 120px;
+  width: 100%;
+  padding-top: 50px;
+  background-color: rgb(202, 201, 201, .1);
+  text-align: center;
+  font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.details{
+  display: block;
+  text-align: center;
+  font-family: "Rock Salt", cursive;
+  font-weight: 400;
+  font-style: normal;
+}
+.ranking-page{
+  background-image: linear-gradient(to left, grey, greenyellow);
+}
+p{
+  text-align: center;
+  color: orange;
+  font-weight: bold;
+}

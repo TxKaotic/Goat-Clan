@@ -60,33 +60,64 @@
 
 
 <section>
+    
     <form class="form">
         <p class="title">Get Your Rank </p>
-        
+
+        <div class="flex">
+              
+
+            <label>
+                <input class="input" id="ign" type="text" placeholder="" >
+                <span>IGN</span>
+            </label>
+            </div>
             <div class="flex">
+              
+
             <label>
                 <input class="input" id="total-level" type="number" placeholder="" >
                 <span>Total Level</span>
             </label>
       
         </div>  
-                
-        <label>
-            <input class="input" id="achieve" type="text" placeholder="" >
-            <span>Achievent Diary Tier Completed</span>
-        </label> 
-            
-        <label>
-            <input class="input" id="combat" type="text" placeholder="" >
-            <span>Combat Achievement Tier</span>
-        </label>
+        <div class="flex">       
+            <label >
+                <select class="achieve" name="diaries" id="diary">
+                    <option style="display:none">Diary Tier</option>
+                    <option value= 1>Easy</option>
+                    <option value= 2>Medium</option>
+                    <option value= 3>Hard</option>
+                    <option value= 4>Elite</option>
+                </select>
+            </label>
+        </div> 
+        <div class="flex">   
+            <label >
+                <select class="combat" name="diaries" id="diary">
+                    <option style="display:none">Combat Tier</option>
+                    <option value= 1>Easy</option>
+                    <option value= 2>Medium</option>
+                    <option value= 3>Hard</option>
+                    <option value= 4>Elite</option>
+                    <option value= 5>Master</option>
+                    <option value= 6>GrandMaster</option>
+                </select>
+            </label>
+        </div> 
+
+        <div class="flex">
         <label>
             <input class="input" id="age" type="number" placeholder="" >
-            <span>GOAT Membership (Years)</span>
+            <span>How long have you been in GOAT? (YEARS)</span>
         </label>
-        <button class="submitBtn" id="myBtn" >Submit</button>
+        </div>
         
+           
+          
     </form>
+    <button class="submit" id="myBtn" >Get Rank</button> 
+
 </section>
 
 

@@ -272,7 +272,7 @@ h1{
   font-size: medium;
 }
 
-.submit {
+.submitBtn {
   border: none;
   outline: none;
   padding: 10px;
@@ -283,7 +283,7 @@ h1{
   background-color: #00bfff;
 }
 
-.submit:hover {
+.submitBtn:hover {
   background-color: #00bfff96;
 }
 

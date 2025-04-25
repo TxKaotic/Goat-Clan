@@ -308,16 +308,20 @@ img{
     }
     
     /* Modal Content/Box */
-    .modal-content {
+   .modal-content {
       background-image: linear-gradient(to right, grey, #00bfff);
       margin: 15% auto; /* 15% from the top and centered */
       padding: 20px;
       border: 1px solid #888;
       width: 50%; /* Could be more or less, depending on screen size */
       height: 50%;
+      
+      padding-top: 20%;
       text-align: center;
-      padding-top: 10%;
-      font-size: 25px;
+      font-family: "Kode Mono", monospace;
+      font-optical-sizing: auto;
+      font-weight: 600;
+      font-style: normal;
     }
     
     /* The Close Button */

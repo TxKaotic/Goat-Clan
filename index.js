@@ -1,5 +1,5 @@
-const totalLevel = document.querySelector("#total-level");
 const modalContent = document.querySelector(".modal-content");
+
 
 // Get the modal
 var modal = document.getElementById("myModal");
@@ -13,7 +13,39 @@ var span = document.getElementsByClassName("close")[0];
 // When the user clicks on the button, open the modal
 btn.onclick = function () {
   modal.style.display = "block";
+  if (document.getElementById('squireReq1').checked && 
+      document.getElementById('squireReq2').checked) {
+    setRank("Squire")
+  }
+  else if ( document.getElementById('expertReq1').checked &&
+            document.getElementById('expertReq3').checked &&
+            document.getElementById('expertReq3').checked) {
+    setRank("Expert")
+  }
+  else if ( document.getElementById('knightReq1').checked &&
+            document.getElementById('knightReq3').checked &&
+            document.getElementById('knightReq3').checked) {
+    setRank("Knight")
+  }   
+  else if ( document.getElementById('paladinReq1').checked &&
+            document.getElementById('paladinReq3').checked &&
+            document.getElementById('paladinReq3').checked) {
+    setRank("Paladin")
+  }
+  else if ( document.getElementById('astralReq1').checked &&
+            document.getElementById('astralReq2').checked) {
+    setRank("Astral")
+  }  
+  
+  
+    
+  else modalContent.textContent = "Make sure you only check the boxes for a section you have the reqs for!"
 };
+
+const setRank = function(rank){
+  
+  modalContent.textContent = (`Welcome to the GOAT Clan. Your rank: ` + rank)
+}
 
 // When the user clicks on <span> (x), close the modal
 span.onclick = function () {
@@ -27,21 +59,3 @@ window.onclick = function (event) {
   }
 };
 
-$("#myBtn").click(function () {
-  let level = $("#total-level").val();
-  let achievementTier = $(".achieve").val();
-  let combatTier = $(".combat").val();
-  let memberYears = $("#age").val();
-  let inGameName = $("#ign").val();
-
-  if (level >= 1500 && achievementTier >= 2 && combatTier >= 1)
-    modalContent.textContent = `${inGameName}, You meet the REQs for SQUIRE. You have been a member of GOAT for ${memberYears} Years`;
-  else if (level >= 1750 && achievementTier == 2 && combatTier == 3)
-    modalContent.textContent = `${inGameName}, You meet the REQs for EXPERT. You have been a member of GOAT for ${memberYears} Years`;
-  else if (level >= 2000 && achievementTier == 3 && combatTier == 4)
-    modalContent.textContent = `${inGameName}, You meet the REQs for KNIGHT. You have been a member of GOAT for ${memberYears} Years`;
-  else if (level >= 2200 && achievementTier == 4 && combatTier == 5)
-    modalContent.textContent = `${inGameName}, You meet the REQs for PALADIN. You have been a member of GOAT for ${memberYears} Years`;
-  else
-    modalContent.textContent = `Welcome ${inGameName}, You dont quite meet the Requirements for Squire, but you are still welcome to join.`;
-});

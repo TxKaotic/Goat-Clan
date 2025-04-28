@@ -11,7 +11,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@600&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
-    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 </head>
 <body class="ranking-page">
 
@@ -59,18 +59,28 @@
 
 
 
-<h1 class="rank-title-page">Ranking System</h1>
+<h1 class="rank-title-page">Goat Ranks</h1>
 <div class="ranking-system">
-    <h3 class="details">Goat Ranks</h3>
+
+  
+    
     <br>
     <button id="myBtn" class="submit">Get Rank</button>
     <h3 class="rank">Gnome Child👶</h3>
         <p class="noob-ranks">New Recruit (Two week trial period)</p>
     <h3 class="rank">Short Green Guy👽</h3>
         <p class="noob-ranks">Pending Rank (Please Submit ASAP Via Discord)</p>
-    <br>
+    <!-- <br>
     <h2 class="details"><em>The following Ranks require ALL checkboxes to obtain</em></h2>
-    <br>
+    <br> -->
+    <div class="ignField">
+    <span>In Game Name:</span>
+    <label >
+      
+      <input id="ign" type="text" placeholder="" >
+      
+  </label>
+</div>
     <h3 class="rank">Squire🤖</h3>
         <div class="reqs">
             <input id="squireReq1" type="checkbox">1500 Total Level</li>
@@ -139,9 +149,7 @@
         <input  type="checkbox">All Above = Highest Rank Possible</input>
     </div>
     <br>
-    <h2 class="details"><em>The following Ranks Are Clan Experience Based</em></h2>
-
-    <br>
+    
     <br>
     <h3 class="details">Veteran Ranks</h3>
     <br>    
@@ -194,8 +202,8 @@
     </ul>
     <p class="text-center text-body-secondary">Designed By: TxKaotic</p>
   </footer>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="./index.js"></script>     
 </body>
 </html>

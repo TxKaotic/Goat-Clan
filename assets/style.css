@@ -252,27 +252,19 @@ img{
   }
   
   .submit {
-  
-      display: flex;
-    flex-direction: column;
+    position: fixed;
+    /* display: flex; */
+    /* flex-direction: column; */
     gap: 10px;
-    max-width: 100px;
+    max-width: 15%;
     padding: 20px;
     border-radius: 20px;
-    position: relative;
+    /* position: relative; */
     background-color: #1a1a1a;
     color: #fff;
     border: 1px solid #333;
-    margin: auto;
-    width: 50%;
-    /* border: none;
-    outline: none;
-    padding: 10px;
-    border-radius: 10px;
-    color: #fff;
-    font-size: 16px;
-    transform: .3s ease;
-    background-color: #1a1a1a; */
+    /* margin: auto; */
+    width: 50%; 
   }
   
   .submit:hover {

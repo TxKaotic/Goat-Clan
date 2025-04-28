@@ -32,7 +32,7 @@ btn.onclick = function () {
     setRank("Knight");
   } else if (
     document.getElementById("paladinReq1").checked &&
-    document.getElementById("paladinReq3").checked &&
+    document.getElementById("paladinReq2").checked &&
     document.getElementById("paladinReq3").checked
   ) {
     setRank("Paladin");
@@ -41,6 +41,24 @@ btn.onclick = function () {
     document.getElementById("astralReq2").checked
   ) {
     setRank("Astral");
+  } else if (
+    document.getElementById("skulledReq1").checked &&
+    document.getElementById("skulledReq2").checked &&
+    document.getElementById("skulledReq3").checked &&
+    document.getElementById("skulledReq4").checked
+  ) {
+    setRank("Skulled");
+  } else if (
+    document.getElementById("maxedReq1").checked &&
+    document.getElementById("maxedReq2").checked
+  ) {
+    setRank("Maxed");
+  } else if (
+    document.getElementById("beastReq1").checked &&
+    document.getElementById("beastReq2").checked &&
+    document.getElementById("beastReq3").checked
+  ) {
+    setRank("Beast");
   } else
     modalContent.textContent = `Welcome, ${inGameName}, make sure you only check the boxes for a section you have the reqs for!`;
 };

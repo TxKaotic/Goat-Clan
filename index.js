@@ -59,6 +59,21 @@ btn.onclick = function () {
     document.getElementById("beastReq3").checked
   ) {
     setRank("Beast");
+  } else if (
+    document.getElementById("lieutReq1").checked &&
+    document.getElementById("lieutReq2").checked
+  ) {
+    setRank("Lieutenant");
+  } else if (
+    document.getElementById("captReq1").checked &&
+    document.getElementById("captReq2").checked
+  ) {
+    setRank("Captain");
+  } else if (
+    document.getElementById("genReq1").checked &&
+    document.getElementById("genReq2").checked
+  ) {
+    setRank("General");
   } else
     modalContent.textContent = `Welcome, ${inGameName}, make sure you only check the boxes for a section you have the reqs for!`;
 };

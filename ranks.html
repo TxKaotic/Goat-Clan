@@ -1,207 +1,219 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Ranking System</title>
-    <link rel="stylesheet" href="./assets/style.css">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Kode+Mono:wght@600&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Saira+Stencil+One&display=swap" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap" rel="stylesheet">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <meta charset="UTF-8">
+  <title>Clan Rank Checker</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background: #0a0a0f;
+      color: #f0f0f0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+    h1 {
+      color: #0ff;
+      text-shadow: 0 0 8px #0ff;
+      margin-bottom: 20px;
+    }
+    .card {
+      background: #111;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 0 15px #0ff5;
+      max-width: 400px;
+      width: 100%;
+    }
+    label {
+      display: block;
+      margin: 12px 0 6px;
+      color: #ccc;
+    }
+    input, select, button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border: none;
+      border-radius: 8px;
+      outline: none;
+      font-size: 1rem;
+    }
+    input, select {
+      background: #222;
+      color: #0ff;
+    }
+    button {
+      background: #0ff;
+      color: #000;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.2s;
+    }
+    button:hover {
+      background: #0cc;
+    }
+    #result {
+      margin-top: 20px;
+      padding: 15px;
+      border-radius: 12px;
+      text-align: center;
+      font-size: 1.2rem;
+      font-weight: bold;
+      background: #111;
+      box-shadow: 0 0 10px #0ff7;
+      display: none;
+    }
+    #copyButton {
+      display: none;
+      background: #0f0;
+      margin-top: 10px;
+    }
+  </style>
 </head>
-<body class="ranking-page">
-
-    <section>
-        <nav class="navbar navbar-expand-lg bg-body-tertiary">
-            <div class="container-fluid">
-              <div class="pyramid-loader">
-                <div class="wrapper">
-                  <span class="side side1"></span>
-                  <span class="side side2"></span>
-                  <span class="side side3"></span>
-                  <span class="side side4"></span>
-                 
-                </div>  
-              </div>
-              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-              </button>
-              <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav">
-                  <li class="nav-item">
-                    <a class="nav-link active" aria-current="page" href="./index.html">Home</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./bingo-board.html">Events</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./gear.html">Gear Progression</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://oldschool.runescape.wiki/">OSRS Wiki</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="./purples.html">Mega Rares</a>
-                  </li>
-                  <li class="nav-item">
-                    <a class="nav-link" href="https://discord.gg/vvxHNSQqZd"><img src="./assets/discord.svg" height=30 alt="Discord"></a>
-                  </li>
-                  
-                </ul>
-              </div>
-            </div>
-          </nav>
-      </section>
-
-
-
-<h1 class="rank-title-page">Goat Ranks</h1>
-<div class="ranking-system">
-
-  
+<body>
+  <h1>⚔️ Clan Rank Checker ⚔️</h1>
+  <div class="card">
+    <label for="username">Enter RSN:</label>
+    <input type="text" id="username" placeholder="Old School RuneScape Username">
     
-    <br>
-    <button id="myBtn" class="submit">Get Rank</button>
-    <!-- <h3 class="rank">Gnome Child👶</h3>
-        <p class="noob-ranks">New Recruit (Two week trial period)</p>
-    <h3 class="rank">Short Green Guy👽</h3>
-        <p class="noob-ranks">Pending Rank (Please Submit ASAP Via Discord)</p> -->
-   
-    <div class="ignField">
+    <label for="diary">Achievement Diary Tier:</label>
+    <select id="diary">
+      <option value="None">None</option>
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+      <option value="Elite">Elite</option>
+      <option value="Master">Master</option>
+      <option value="Grandmaster">Grandmaster</option>
+    </select>
     
-    <label >
-      
-      <input id="ign" type="text" placeholder="In Game Name" >
-      
-  </label>
-</div>
-    <h3 class="rank">Squire🤖</h3>
-        <div class="reqs">
-            <input id="squireReq1" type="checkbox">1500 Total Level</li>
-        <br>
-        <input id="squireReq2" type="checkbox">Medium Achievement Diary Rewards Unlocked</input>
-        </div>
-
-    <h3 class="rank">Expert👌</h3>
-    <div class="reqs">
-        <input id="expertReq1" type="checkbox">1750 Total Level</li>
-        <br>
-        <input id="expertReq2" type="checkbox">All Medium Achievement Diaries Complete</input>
-        <br>
-        <input id="expertReq3" type="checkbox">Hard Combat Diary Rewards Unlocked</input>
-    </div>
-
-    <h3 class="rank">Knight🤺</h3>
-    <div class="reqs">
-        <input id="knightReq1" type="checkbox">2000 Total Level</li>
-        <br>
-        <input id="knightReq2" type="checkbox">All Hard Achievement Diaries Complete</input>
-        <br>
-        <input id="knightReq3" type="checkbox">Elite Combat Diary Rewards Unlocked</input>
-    </div>
-
-    <h3 class="rank">Paladin⚔️</h3>
-    <div class="reqs">
-        <input id="paladinReq1" type="checkbox">2200 Total Level</li>
-        <br>
-        <input id="paladinReq2" type="checkbox">All Elite Achievement Diaries Complete</input>
-        <br>
-        <input id="paladinReq3" type="checkbox">Master Combat Diary Rewards Unlocked</input>
-    </div>
-
-    <h3 class="rank">Astral🟪</h3>
-    <div class="reqs">
-        <input id="astralReq1" type="checkbox">All Paladin Requirements</input>
-        <br>
-        <input id="astralReq2" type="checkbox">750 EHB = PVM Leadership Role</input>
-    </div>
-
-    <h3 class="rank">Skulled💀</h3>
-    <div class="reqs">
-        <input id="skulledReq1" type="checkbox">All Paladin Requirements</input>
-        <br>
-        <input id="skulledReq2" type="checkbox">2000 PVP Arena Score</input>
-        <br>
-        <input id="skulledReq3" type="checkbox">2000 LMS Score</input>
-        <br>
-        <input id="skulledReq4" type="checkbox">All Above = PVP Leadership Role</input>
-    </div>
-
-    <h3 class="rank">Maxed🌈</h3>
-    <div class="reqs">
-        <input id="maxedReq1" type="checkbox">All Paladin Requirements</input>
-        <br>
-        <input id="maxedReq2" type="checkbox">2277 Total Level</input>
-    </div>
-
-    <h3 class="rank">Beast💪</h3>
-    <div class="reqs">
-        <input id="beastReq1" type="checkbox">All Rank Requirements</input>
-        <br>
-        <input id="beastReq2" type="checkbox">Grandmaster Combat Diary</input>
-        <br>
-        <input id="beastReq3" type="checkbox">All Above = Highest Rank Possible</input>
-    </div>
-    <br>
+    <label for="combatDiary">Combat Achievement Diary:</label>
+    <select id="combatDiary">
+      <option value="None">None</option>
+      <option value="Easy">Easy</option>
+      <option value="Medium">Medium</option>
+      <option value="Hard">Hard</option>
+      <option value="Elite">Elite</option>
+      <option value="Master">Master</option>
+      <option value="Grandmaster">Grandmaster</option>
+    </select>
     
-    <br>
-    <h3 class="details">Veteran Ranks</h3>
-    <br>    
-    <h3 class="rank">Lieutenant💫</h3>
-    <div class="reqs">
-        <input id="lieutReq1" type="checkbox">Astral Rank</input>
-        <br>
-        <input id="lieutReq2" type="checkbox">1 Year Clan Member</input>
-    </div>
-
-    <h3 class="rank">Captain⭐</h3>
-    <div class="reqs">
-        <input id="captReq1" type="checkbox">Astral Rank</input>
-        <br>
-        <input id="captReq2" type="checkbox">2 Year Clan Member</input>
-    </div>
-
-    <h3 class="rank">General🌟</h3>
-    <div class="reqs">
-        <input id="genReq1" type="checkbox">Astral Rank</input>
-        <br>
-        <input id="genReq2" type="checkbox">3 Year Clan Member</input>
-    </div>
-
-</div>
-
-<!-- Trigger/Open The Modal -->
-
-
-<!-- The Modal -->
-<div id="myModal" class="modal">
-
-  <!-- Modal content -->
-  <div class="modal-content">
-    <span class="close">&times;</span>
-    <p>You are a NOOB!</p>
+    <button onclick="checkRank()">Check Rank</button>
+    <div id="result"></div>
+    <button id="copyButton" onclick="copyRankCard()">📋 Copy Rank Card</button>
   </div>
 
-</div>
+  <!-- html2canvas CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
+  <script>
+    const skillNames = [
+      'Overall', 'Attack', 'Defence', 'Strength', 'Hitpoints', 'Ranged', 'Prayer',
+      'Magic', 'Cooking', 'Woodcutting', 'Fletching', 'Fishing', 'Firemaking',
+      'Crafting', 'Smithing', 'Mining', 'Herblore', 'Agility', 'Thieving',
+      'Slayer', 'Farming', 'Runecraft', 'Hunter', 'Construction'
+    ];
 
+    async function fetchPlayerData(username) {
+      const proxyUrl = 'https://api.allorigins.win/raw?url=';
+      const hiscoresUrl = `https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=${encodeURIComponent(username)}`;
 
-<footer class="py-3 my-4">
-    <ul class="nav justify-content-center border-bottom pb-3 mb-3">
-      <li class="nav-item"><a href="./index.html" class="nav-link px-2 text-body-secondary">Home</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Bingo Events</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">Ranking System</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">FAQs</a></li>
-      <li class="nav-item"><a href="#" class="nav-link px-2 text-body-secondary">About</a></li>
-    </ul>
-    <p class="text-center text-body-secondary">Designed By: TxKaotic</p>
-  </footer>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+      try {
+        const response = await fetch(proxyUrl + encodeURIComponent(hiscoresUrl));
+        if (!response.ok) {
+          throw new Error('Player not found or hiscores unavailable');
+        }
+        const data = await response.text();
+        return parseHiscoreData(data);
+      } catch (error) {
+        throw new Error('Failed to fetch player data: ' + error.message);
+      }
+    }
 
-<script src="./index.js"></script>     
+    function parseHiscoreData(rawData) {
+      const lines = rawData.trim().split("\n").map(l => l.split(","));
+      const skills = {};
+      skillNames.forEach((name, i) => {
+        const [rank, level, xp] = lines[i];
+        skills[name] = { rank: parseInt(rank), level: parseInt(level), xp: parseInt(xp) };
+      });
+      return { skills };
+    }
+
+    function diaryRankValue(tier) {
+      const values = {None: 0, Easy: 1, Medium: 2, Hard: 3, Elite: 4, Master: 5, Grandmaster: 6};
+      return values[tier] || 0;
+    }
+
+    function determineRank(totalLevel, diary, combatDiary) {
+      const d = diaryRankValue(diary);
+      const c = diaryRankValue(combatDiary);
+
+      if (totalLevel >= 2200 && d >= 4 && c >= 5) return "Paladin";
+      if (totalLevel >= 2000 && d >= 3 && c >= 4) return "Knight";
+      if (totalLevel >= 1750 && d >= 2 && c >= 3) return "Expert";
+      if (totalLevel >= 1500 && d >= 1 && c >= 2) return "Squire";
+      return "Feeder";
+    }
+
+    async function checkRank() {
+      const username = document.getElementById("username").value.trim();
+      const diary = document.getElementById("diary").value;
+      const combatDiary = document.getElementById("combatDiary").value;
+      const resultDiv = document.getElementById("result");
+      const copyBtn = document.getElementById("copyButton");
+
+      if (!username) {
+        alert("Please enter a username!");
+        return;
+      }
+
+      try {
+        resultDiv.style.display = "block";
+        resultDiv.innerText = "Checking...";
+        copyBtn.style.display = "none";
+
+        const playerData = await fetchPlayerData(username);
+        const totalLevel = playerData.skills.Overall.level;
+        const rank = determineRank(totalLevel, diary, combatDiary);
+
+        resultDiv.style.color = "#0ff";
+        resultDiv.innerHTML = `
+          <span style="color:#0ff">Player:</span> ${username}<br>
+          <span style="color:#0ff">Total Level:</span> ${totalLevel}<br>
+          <span style="color:#0ff">Rank:</span> <strong>${rank}</strong>
+        `;
+
+        copyBtn.style.display = "block";
+      } catch (err) {
+        resultDiv.style.display = "block";
+        resultDiv.style.color = "red";
+        resultDiv.innerText = "Error: " + err.message;
+      }
+    }
+
+    async function copyRankCard() {
+      const resultDiv = document.getElementById("result");
+      try {
+        const canvas = await html2canvas(resultDiv, { backgroundColor: "#0a0a0f" });
+        canvas.toBlob(async blob => {
+          try {
+            await navigator.clipboard.write([
+              new ClipboardItem({ "image/png": blob })
+            ]);
+            alert("✅ Rank card copied to clipboard! You can paste it into Discord.");
+          } catch (err) {
+            alert("❌ Failed to copy image: " + err.message);
+          }
+        });
+      } catch (err) {
+        alert("❌ Could not generate image: " + err.message);
+      }
+    }
+  </script>
 </body>
 </html>

@@ -70,23 +70,27 @@
       padding: 15px;
       border-radius: 12px;
       text-align: center;
-      font-size: 1.2rem;
+      font-size: 1rem;
       font-weight: bold;
       background: #111;
       box-shadow: 0 0 10px #0ff7;
       display: none;
     }
+    textarea {
+      width: 100%;
+      height: 150px;
+      background: #0d0d0d;
+      color: #0ff;
+      font-family: monospace;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #0ff;
+      resize: none;
+    }
     #copyButton {
       display: none;
       background: #0f0;
       margin-top: 10px;
-    }
-    .rank-badge {
-      width: 32px;
-      height: 32px;
-      vertical-align: middle;
-      margin-left: 6px;
-      image-rendering: pixelated;
     }
   </style>
 </head>
@@ -104,7 +108,6 @@
       <option value="Medium">Medium</option>
       <option value="Hard">Hard</option>
       <option value="Elite">Elite</option>
-      
     </select>
     
     <label for="combatDiary">Combat Achievement Diary:</label>
@@ -120,11 +123,8 @@
     
     <button onclick="checkRank()">Check Rank</button>
     <div id="result"></div>
-    <button id="copyButton" onclick="copyRankCard()">📋 Copy Rank Card</button>
+    <button id="copyButton" onclick="copyVerificationText()">📋 Copy Verification Text</button>
   </div>
-
-  <!-- html2canvas CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
 
   <script>
     const skillNames = [
@@ -146,11 +146,8 @@
     async function fetchPlayerData(username) {
       const proxyUrl = 'https://api.allorigins.win/raw?url=';
       const hiscoresUrl = `https://services.runescape.com/m=hiscore_oldschool/index_lite.ws?player=${encodeURIComponent(username)}`;
-
       const response = await fetch(proxyUrl + encodeURIComponent(hiscoresUrl));
-      if (!response.ok) {
-        throw new Error('Player not found or hiscores unavailable');
-      }
+      if (!response.ok) throw new Error('Player not found or hiscores unavailable');
       const data = await response.text();
       return parseHiscoreData(data);
     }
@@ -172,11 +169,7 @@
 
     function determineRank(totalLevel, diary, combatDiary, username) {
       const normalized = username.trim().toLowerCase();
-
-      // Check overrides first
-      if (notableRanks[normalized]) {
-        return notableRanks[normalized];
-      }
+      if (notableRanks[normalized]) return notableRanks[normalized];
 
       const d = diaryRankValue(diary);
       const c = diaryRankValue(combatDiary);
@@ -186,6 +179,10 @@
       if (totalLevel >= 1750 && d >= 2 && c >= 3) return "Expert";
       if (totalLevel >= 1500 && d >= 1 && c >= 2) return "Squire";
       return "Feeder";
+    }
+
+    function generateVerificationCode() {
+      return Math.random().toString(36).substring(2, 10).toUpperCase();
     }
 
     async function checkRank() {
@@ -214,17 +211,14 @@
         }
 
         const rank = determineRank(totalLevel, diary, combatDiary, username);
+        const verificationCode = generateVerificationCode();
 
-        
+        const textOutput =
+`Player: ${username}
+${!notableRanks[normalized] ? `Total Level: ${totalLevel}\n` : ""}Rank: ${rank}
+Rank Verification Code: ${verificationCode}`;
 
-        resultDiv.style.color = "#0ff";
-        resultDiv.innerHTML = `
-          <span style="color:#0ff">Player:</span> ${username}<br>
-          ${!notableRanks[normalized] ? `<span style="color:#0ff">Total Level:</span> ${totalLevel}<br>` : ""}
-          <span style="color:#0ff">Rank:</span> <strong>${rank}</strong>
-          
-        `;
-
+        resultDiv.innerHTML = `<textarea readonly id="verificationText">${textOutput}</textarea>`;
         copyBtn.style.display = "block";
       } catch (err) {
         resultDiv.style.display = "block";
@@ -233,34 +227,12 @@
       }
     }
 
-    async function copyRankCard() {
-      const resultDiv = document.getElementById("result");
-      try {
-        const canvas = await html2canvas(resultDiv, { backgroundColor: "#0a0a0f" });
-        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
-
-        canvas.toBlob(async blob => {
-          try {
-            if (!isSafari && navigator.clipboard && window.ClipboardItem) {
-              await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-              alert("✅ Rank card copied to clipboard! You can paste it into Discord.");
-            } else {
-              // Safari fallback → copy image URL instead
-              const tempInput = document.createElement("input");
-              tempInput.value = resultDiv.innerText;
-              document.body.appendChild(tempInput);
-              tempInput.select();
-              document.execCommand("copy");
-              document.body.removeChild(tempInput);
-              alert("⚠️ Safari limitation: Copied text instead of image.");
-            }
-          } catch (err) {
-            alert("❌ Failed to copy: " + err.message);
-          }
-        });
-      } catch (err) {
-        alert("❌ Could not generate image: " + err.message);
-      }
+    function copyVerificationText() {
+      const textarea = document.getElementById("verificationText");
+      textarea.select();
+      textarea.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+      alert("✅ Verification text copied! Paste it into Discord.");
     }
   </script>
 

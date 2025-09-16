@@ -81,6 +81,13 @@
       background: #0f0;
       margin-top: 10px;
     }
+    .rank-badge {
+      width: 32px;
+      height: 32px;
+      vertical-align: middle;
+      margin-left: 6px;
+      image-rendering: pixelated;
+    }
   </style>
 </head>
 <body>
@@ -127,7 +134,7 @@
       'Slayer','Farming','Runecraft','Hunter','Construction'
     ];
 
-    // Notable Ranks override (all lowercase keys)
+    // Notable Ranks override (case insensitive)
     const notableRanks = {
       "are you dry": "Administrator ⚓",
       "mikael myurz": "Administrator ⚓",
@@ -208,11 +215,14 @@
 
         const rank = determineRank(totalLevel, diary, combatDiary, username);
 
+        
+
         resultDiv.style.color = "#0ff";
         resultDiv.innerHTML = `
           <span style="color:#0ff">Player:</span> ${username}<br>
           ${!notableRanks[normalized] ? `<span style="color:#0ff">Total Level:</span> ${totalLevel}<br>` : ""}
           <span style="color:#0ff">Rank:</span> <strong>${rank}</strong>
+          
         `;
 
         copyBtn.style.display = "block";
@@ -227,12 +237,25 @@
       const resultDiv = document.getElementById("result");
       try {
         const canvas = await html2canvas(resultDiv, { backgroundColor: "#0a0a0f" });
+        const isSafari = /^((?!chrome|android).)*safari/i.test(navigator.userAgent);
+
         canvas.toBlob(async blob => {
           try {
-            await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
-            alert("✅ Rank card copied to clipboard! You can paste it into Discord.");
+            if (!isSafari && navigator.clipboard && window.ClipboardItem) {
+              await navigator.clipboard.write([new ClipboardItem({ "image/png": blob })]);
+              alert("✅ Rank card copied to clipboard! You can paste it into Discord.");
+            } else {
+              // Safari fallback → copy image URL instead
+              const tempInput = document.createElement("input");
+              tempInput.value = resultDiv.innerText;
+              document.body.appendChild(tempInput);
+              tempInput.select();
+              document.execCommand("copy");
+              document.body.removeChild(tempInput);
+              alert("⚠️ Safari limitation: Copied text instead of image.");
+            }
           } catch (err) {
-            alert("❌ Failed to copy image: " + err.message);
+            alert("❌ Failed to copy: " + err.message);
           }
         });
       } catch (err) {
@@ -254,4 +277,3 @@
 
 </body>
 </html>
-
